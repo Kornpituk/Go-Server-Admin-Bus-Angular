@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"net/http"
 	"server/controllers"
 
 	// "github.com/labstack/echo/"
@@ -8,9 +9,14 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
+var(
+	e *echo.Echo
+)
+
 func Init() *echo.Echo {
 
 	e := echo.New()
+
 	e.Use(middleware.CORS())
 
 	e.GET("/user", controllers.GetAllUsers)
@@ -20,4 +26,9 @@ func Init() *echo.Echo {
 	e.DELETE("/user/:id", controllers.DeletedUser)
 
 	return e
+}
+
+// ADD THIS SCRIPT
+func Handler(w http.ResponseWriter, r *http.Request) {
+	e.ServeHTTP(w, r)
 }
