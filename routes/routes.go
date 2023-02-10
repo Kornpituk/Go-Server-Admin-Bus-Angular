@@ -9,7 +9,7 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
-var(
+var (
 	e *echo.Echo
 )
 
@@ -25,10 +25,21 @@ func Init() *echo.Echo {
 	e.PUT("/user/:id", controllers.EditedUser)
 	e.DELETE("/user/:id", controllers.DeletedUser)
 
+
 	return e
 }
 
-// ADD THIS SCRIPT
+
 func Handler(w http.ResponseWriter, r *http.Request) {
+	e := echo.New()
+
+	e.Use(middleware.CORS())
+
+	e.GET("/user", controllers.GetAllUsers)
+	e.POST("/user", controllers.CreatedUser)
+	e.GET("/user/:id", controllers.GetUser)
+	e.PUT("/user/:id", controllers.EditedUser)
+	e.DELETE("/user/:id", controllers.DeletedUser)
+
 	e.ServeHTTP(w, r)
 }
