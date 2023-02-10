@@ -8,8 +8,8 @@
 	"rewrites":
 	[
 		{
-			"source":"/api(.*)",
-			"destination":"/api/routes/routes.go"
+			"source":"/(.*)",
+			"destination":"/routes/routes.go"
 		}
 	]
   }
