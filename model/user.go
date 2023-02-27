@@ -14,5 +14,6 @@ type User struct {
 	Gender string `json:"Gender"`
 	Role string `json:"Role"`
 	Isactive bool `json:"IsActive"`
+	ApprovalBy string `json:"Approval"`
 }
 
